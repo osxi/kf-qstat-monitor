@@ -30,7 +30,17 @@
           <legend><?php echo $values[$v][$index[$v][NAME][0]][value]; ?></legend>
           <div class="row">
             <div class="small-3 columns">
-              <img src="http://image.www.gametracker.com/images/maps/160x120/killingfloor/<?php echo strtolower(str_replace('-', '_', $values[$v][$index[$v][MAP][0]][value])) ?>.jpg" />
+              <?php $img_url = "http://image.www.gametracker.com/images/maps/160x120/killingfloor/" . strtolower(str_replace('-', '_', $values[$v][$index[$v][MAP][0]][value])).".jpg" // URL for non-404 map image ?>
+              <?php $curl_handle = curl_init($img_url) // Create cURL handle ?>
+              <?php curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE) ?>
+              <?php $reponse = curl_exec($curl_handle) ?>
+              <?php $http_code = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE) ?>
+              <?php curl_close($curl_handle) // Release cURL handle ?>
+              <?php if($http_code == 404) { ?>
+                <img src="http://image.www.gametracker.com/images/maps/160x120/nomap.jpg" />
+              <?php } else { ?>
+                <img src="<?php echo $img_url ?>" />
+              <?php } ?>
             </div>
             <div class="small-5 columns">
               <table>
