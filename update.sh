@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd /home/zach/qstat/
+cd /home/zach/projects/kf-qstat-monitor/
 
 /usr/bin/quakestat -ut2s 127.0.0.1:7707 -R -P -xml > orig_tmp.xml
 /usr/bin/quakestat -ut2s 127.0.0.1:7709 -R -P -xml > doom_tmp.xml
