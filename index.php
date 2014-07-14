@@ -30,12 +30,14 @@
           <legend><?php echo $values[$v][$index[$v][NAME][0]][value]; ?></legend>
           <div class="row">
             <div class="small-3 columns">
-              <?php $img_url = "http://image.www.gametracker.com/images/maps/160x120/killingfloor/" . strtolower(str_replace('-', '_', $values[$v][$index[$v][MAP][0]][value])).".jpg" // URL for non-404 map image ?>
+              <?php $map_name = $values[$v][$index[$v][MAP][0]][value] ?>
+              <?php $img_url  = "http://image.www.gametracker.com/images/maps/160x120/killingfloor/" . strtolower(str_replace('-', '_', $map_name)).".jpg" // URL for non-404 map image ?>
               <?php $curl_handle = curl_init($img_url) // Create cURL handle ?>
               <?php curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE) ?>
               <?php $reponse = curl_exec($curl_handle) ?>
               <?php $http_code = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE) ?>
               <?php curl_close($curl_handle) // Release cURL handle ?>
+              <legend><?php echo $map_name ?></legend>
               <?php if($http_code == 404) { ?>
                 <img src="http://image.www.gametracker.com/images/maps/160x120/nomap.jpg" />
               <?php } else { ?>
@@ -43,6 +45,7 @@
               <?php } ?>
             </div>
             <div class="small-5 columns">
+              <legend>Status</legend>
               <table>
                 <tr>
                   <th>Status</th>
@@ -57,8 +60,25 @@
                   <td><?php echo $values[$v][$index[$v][NUMPLAYERS][0]][value].'/'.$values[$v][$index[$v][MAXPLAYERS][0]][value] ?></td>
                 </tr>
               </table>
+              <legend>Players</legend>
+              <table>
+                <tr>
+                  <th>Player</th>
+                  <th>Score</th>
+                  <th>Ping</th>
+                </tr>
+                <?php $player_count = $values[$v][$index[$v][NUMPLAYERS][0]][value] ?>
+                <?php for($i=1; $i<=$player_count; $i++) { ?>
+                <tr>
+                  <td><?php echo $values[$v][$index[$v][NAME][$i]][value] ?></td>
+                  <td><?php echo $values[$v][$index[$v][SCORE][$i-1]][value] ?></td>
+                  <td><?php echo $values[$v][$index[$v][PING][$i]][value] ?></td>
+                </tr>
+                <?php } ?>
+              </table>
             </div>
             <div class="small-4 columns">
+              <legend>Activity</legend>
               Graph goes here.
             </div>
           </div>
