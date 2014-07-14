@@ -75,6 +75,11 @@
                   <td><?php echo $values[$v][$index[$v][PING][$i]][value] ?></td>
                 </tr>
                 <?php } ?>
+                <?php if($player_count == 0) { ?>
+                <tr>
+                  <td colspan=3><strong>No players found.</strong></td>
+                </tr>
+                <?php } ?>
               </table>
             </div>
             <div class="small-4 columns">
