@@ -5,7 +5,6 @@ Frontend for QStat powered by PHP.
 
 TODO
 ================
- - Parse player information
  - Log key data from XML files into a DB
  - Authentication
  - Togglable panel of log tail for each server
