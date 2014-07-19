@@ -1,5 +1,8 @@
 #main { padding: 0 20px 0 20px; }
 
+.github { background: #b22222 !important; }
+.github:hover { background: #8A1919 !important; }
+
 .status-indicator { width: 19px; height: 19px; }
 
 table { width: 100%; }

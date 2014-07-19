@@ -17,6 +17,9 @@
         </li>
       </ul>
       <section class="top-bar-section">
+        <ul class="left">
+          <li><a href="https://github.com/osxi/kf-qstat-monitor" class="github">kf-qstat-monitor on GitHub</a></li>
+        </ul>
         <ul class="right">
           <li class="active"><a href="#">Monitor Home</a></li>
           <li><a href="http://txchainsaw.net">TXCMT Home</a></li>
