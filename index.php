@@ -1,6 +1,5 @@
 <?php include('xml_parse.php'); // Load variables from parsed XML files ?>
 <?php include('settings.php') // DB Settings ?>
-<?php include('Chart.php'); // Google Charts ?>
 <?php $db_con = pg_connect("host=localhost dbname=txcmt user=zach password=$password") ?>
 <!doctype html>
 <html class="no-js" lang="en">
