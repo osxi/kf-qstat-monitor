@@ -1,4 +1,7 @@
 <?php include('xml_parse.php'); // Load variables from parsed XML files ?>
+<?php include('settings.php') // DB Settings ?>
+<?php include('Chart.php'); // Google Charts ?>
+<?php $db_con = pg_connect("host=localhost dbname=txcmt user=zach password=$password") ?>
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -87,7 +90,13 @@
             </div>
             <div class="small-4 columns">
               <legend>Activity</legend>
-              Graph goes here.
+              <?php $result = pg_prepare($db_con, "server-$v", 'select * from log where port = $1 order by date desc limit 5') ?>
+              <?php $result = pg_execute($db_con, "server-$v", array(split(':', $values[$v][$index[$v][SERVER][0]][attributes][ADDRESS])[1] )) ?>
+                <?php if (pg_num_rows($result) > 0) { ?>
+                  <img src="activity.php">
+                <?php } else {?>
+                  <br /><br /><strong>No results found.</strong>
+                <?php } // end if/else ?>
             </div>
           </div>
         </fieldset>

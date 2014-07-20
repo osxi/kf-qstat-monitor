@@ -1,2 +1,6 @@
 # Ignore XML Files
 *.xml
+
+# Ignore Settings
+settings.rb
+settings.php
